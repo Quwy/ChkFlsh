@@ -1,0 +1,45 @@
+/All                Show all available drives/devices (instead removable only)
+/Lang:<language>    Manual select interface language
+/NoWMI              Use old (1.12.1 and below) method to list physical devices
+/NoScroll           Do not scroll log if it exceeds 64KB limit
+/Access:<index>     Preselect "Access type" (see hints on radio buttons)
+/Action:<index>     Preselect "Action type" (see hints on radio buttons)
+/Pattern:<index>    Preselect test type for "Write and read test" (see hints 
+                    on radio buttons)
+/ErasePattern:<hex> Pattern for full erase option, 0 or more hex digits (empty 
+                    mean random pattern)
+/Delayed:<pattern>  Preselect pattern for delayed write/read test (see 
+                    "Write and read test" - "Pattern" combobox for available 
+                    values)
+/File:"<filename>"  Set file name for "Save image" or "Load image" single pass
+/TestLen:<index>    Preselect "Test length" (see hints on radio buttons)
+/TestCount:<count>  Set value for "Manual" test count
+/Sure               Supress warnings about destructive operations
+/Silent             Supress information message boxes
+/Log:"<filename>"   Set file name for store all logged messages
+/Start:"<drive>"    Start process immediate for specified drive or device
+                    ("<drive>" is a first charachters in the drop-down list of
+                    selected access type: "C" or "D:" or "E:\" for temporary
+                    file or logical drive access; "0" or "1:" or "2:\" for
+                    physical device access type). If no drive or device will
+                    found, error message displayed and no any process started
+/Quit               Close program after successfull operation (affected only
+                    with "/Start")
+
+Examples:
+
+ChkFlsh.exe /Access:1 /Action:1 /Pattern:3 /Delayed:AA /Sure /Start:"Z:\"
+                    Selects "As logical drive" access type, "Write and read
+                    test" with "Write pattern" option and "AA" pattern selected,
+                    supress warning about erasing data during test and start
+                    process with these options for drive "Z:\"
+
+ChkFlsh.exe /Access:2 /Action:3 /File:"C:\image.img" /Start:"4:\" /Quit
+                    Stores full image of device number 4 into file C:\image.img
+                    and exit after successfull operation
+
+ChkFlsh.exe /TestLen:3 /Log:"C:\TEST\ChkFlsh.log"
+                    Select by default "Until first error found" test length and
+                    wait for any other user input, save log of all performed 
+                    actions to the file C:\TEST\ChkFlsh.log
+
